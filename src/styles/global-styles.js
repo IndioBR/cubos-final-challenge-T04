@@ -7,7 +7,18 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+  }
+
   h1 {
     color: red;
+  }
+
+  a {
+    all: unset;
+    cursor: pointer;
+    pointer-events: all;
   }
 `;

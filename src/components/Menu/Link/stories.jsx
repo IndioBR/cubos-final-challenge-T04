@@ -1,13 +1,14 @@
-import { Links } from '.';
+import { Link } from '.';
 import homeSelected from '../../../../assets/home.svg'
 
 export default {
-  title: 'Links',
-  component: Links,
+  title: 'Link',
+  component: Link,
   args: {
     src: homeSelected,
     alt: 'home',
-    link: '#home'
+    link: '#home',
+    page: 'Home'
   },
   argTypes: {
     children: { type: 'string' },
@@ -16,6 +17,6 @@ export default {
 
 export const Template = (args) => {
   return (
-    <Links {...args} />
+    <Link {...args} />
   );
 };
