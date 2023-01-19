@@ -1,5 +1,5 @@
 import { Nav } from '.';
-import home from '../../../../assets/home.svg';
+import home from '../../../assets/home.svg';
 
 const mock = [
   {

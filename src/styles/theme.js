@@ -14,6 +14,7 @@ export const theme = {
       lightWine: '#ffefef',
       lightestWine: '#e8caca',
       petroleum: '#1fa7af',
+      modalBlur: '#919A96'
     },
     grays: {
       gray1: '#343447',

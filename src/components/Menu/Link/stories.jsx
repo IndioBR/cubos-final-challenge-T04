@@ -1,5 +1,5 @@
 import { Link } from '.';
-import homeSelected from '../../../../assets/home.svg'
+import homeSelected from '../../../assets/home.svg'
 
 export default {
   title: 'Link',
