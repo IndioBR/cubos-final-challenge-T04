@@ -7,11 +7,10 @@ import { CardButton } from '../CardButton'
 
 
 export const ChargesCard = ({ charges = [] }) => {
-  console.log(charges)
   return (
     <Styled.Container>
       <CardTitle title_name='Cobranças Vencidas' clients_count={charges.length} />
-      <CardFields />
+      <CardFields middle='ID da Cob.' />
       {charges.map((charge) =>
         <Charge {...charge} key={charge.charge_id} />
       )}

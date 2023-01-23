@@ -1,10 +1,13 @@
 import { ClientsCard } from '.';
+import { mock } from './mock';
 
 export default {
   title: 'ClientsCard',
   component: ClientsCard,
   args: {
-    children: 'ClientsCard',
+    title: 'Clientes Inadimplentes',
+    count: 6,
+    charges: mock,
   },
   argTypes: {
     children: { type: 'string' },

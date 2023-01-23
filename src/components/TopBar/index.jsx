@@ -2,7 +2,7 @@ import P from 'prop-types';
 import * as Styled from './styles';
 import { User } from './User'
 
-export const TopBar = ({ page = '', src = '', aka = '', name }) => {
+export const TopBar = ({ page = '', aka = '', username }) => {
   const pageTitle = (page) => {
     if (page === 'Início') return 'Resumo de Cobranças';
     return page;
@@ -20,5 +20,5 @@ TopBar.propTypes = {
   page: P.string.isRequired,
   src: P.string.isRequired,
   aka: P.string.isRequired,
-  name: P.string.isRequired,
+  username: P.string.isRequired,
 };
