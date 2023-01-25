@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 
 import App from './templates/App/App';
 
+import { Register1 } from './templates/pages/Register/Register1';
+import { Register2 } from './templates/pages/Register/Register2';
+import { Register3 } from './templates/pages/Register/Register3';
+import { LoginPage } from './templates/pages/Login'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,6 +16,10 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LoginPage />,
+  },
+  {
+    path: "/home",
     element: <App />,
   },
   {
@@ -20,6 +29,18 @@ const router = createBrowserRouter([
   {
     path: "/charges",
     element: <App />,
+  },
+  {
+    path: "/register-step-1",
+    element: <Register1 />,
+  },
+  {
+    path: "/register-step-2",
+    element: <Register2 />,
+  },
+  {
+    path: "/register-step-3",
+    element: <Register3 />,
   },
 ]);
 

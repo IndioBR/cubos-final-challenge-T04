@@ -7,14 +7,16 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html {
-    font-size: 62.5%;
-    scroll-behavior: smooth;
+  body {
+    height: 100vh;
+    width: 100%;
   }
 
-  h1 {
-    color: red;
+  html {
+    font-size: 62.5%;
   }
+
+  h1 {}
 
   a {
     all: unset;

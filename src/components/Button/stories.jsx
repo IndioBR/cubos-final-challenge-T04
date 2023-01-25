@@ -1,12 +1,11 @@
-import { Input } from '.';
+import { Button } from '.';
 
 export default {
-  title: 'Input',
-  component: Input,
+  title: 'Button',
+  component: Button,
   args: {
-    children: 'Input',
-    label: 'Input',
-    fgtPassword: true
+    children: 'Button',
+    type: 'submit',
   },
   argTypes: {
     children: { type: 'string' },
@@ -16,7 +15,7 @@ export default {
 export const Template = (args) => {
   return (
     <div>
-      <Input {...args} />
+      <Button {...args} />
     </div>
   );
 };

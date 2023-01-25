@@ -1,10 +1,10 @@
-import { LoginForm } from '.';
+import { LoginPage } from '.';
 
 export default {
-  title: 'LoginForm',
-  component: LoginForm,
+  title: 'LoginPage',
+  component: LoginPage,
   args: {
-    children: 'LoginForm',
+    children: 'LoginPage',
   },
   argTypes: {
     children: { type: 'string' },
@@ -13,6 +13,6 @@ export default {
 
 export const Template = (args) => {
   return (
-    <LoginForm {...args} />
+    <LoginPage {...args} />
   );
 };

@@ -1,12 +1,10 @@
-import { Input } from '.';
+import { Register1 } from '.';
 
 export default {
-  title: 'Input',
-  component: Input,
+  title: 'Register1Comp',
+  component: Register1,
   args: {
-    children: 'Input',
-    label: 'Input',
-    fgtPassword: true
+    children: 'Register1',
   },
   argTypes: {
     children: { type: 'string' },
@@ -16,7 +14,7 @@ export default {
 export const Template = (args) => {
   return (
     <div>
-      <Input {...args} />
+      <Register1 {...args} />
     </div>
   );
 };
