@@ -6,7 +6,7 @@ import progress3 from '../../../../assets/progress3.svg';
 import { RegisterComplete as Page } from '../../../../components/Forms/Register/RegisterComplete';
 import { ProgressBar } from '../../../../components/Forms/Register/ProgressBar';
 
-export const Register3 = ({ children }) => {
+export const Register3 = () => {
   return (
     <Styled.Container>
       <Styled.Left>
@@ -32,8 +32,4 @@ export const Register3 = ({ children }) => {
       </Styled.Right>
     </Styled.Container>
   );
-};
-
-Register3.propTypes = {
-  children: P.node.isRequired,
 };

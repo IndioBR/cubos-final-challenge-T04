@@ -9,7 +9,7 @@ export const mock = [
   {
     primarySVG: home,
     secondarySVG: homeSelected,
-    link: '/',
+    link: '/home',
     alt: 'home',
     page: 'Início',
   },

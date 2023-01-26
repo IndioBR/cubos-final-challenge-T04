@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 export const Base = ({ children, barInfo = {} }) => {
   return (
-    <>
+    <Styled.Base>
       <Menu />
       <Styled.Container>
         <TopBar
@@ -16,7 +16,7 @@ export const Base = ({ children, barInfo = {} }) => {
         />
         {children}
       </Styled.Container>
-    </>
+    </Styled.Base>
   );
 };
 

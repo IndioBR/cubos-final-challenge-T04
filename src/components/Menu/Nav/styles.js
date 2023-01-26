@@ -7,7 +7,7 @@ export const Container = styled.div`
     flex-direction: column;
     text-align: center;
     gap: 2rem;
-    width: 10%;
+    width: 5%;
     align-items: center;
     background-color: ${theme.colors.grays.gray7};
     padding-top: 1.5rem;

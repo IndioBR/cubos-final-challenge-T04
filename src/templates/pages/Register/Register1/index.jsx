@@ -32,7 +32,3 @@ export const Register1 = () => {
     </Styled.Container>
   );
 };
-
-Register1.propTypes = {
-  children: P.node.isRequired,
-};

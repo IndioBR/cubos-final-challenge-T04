@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from './templates/App/App';
+import App from './templates/Home/Home';
 
 import { Register1 } from './templates/pages/Register/Register1';
 import { Register2 } from './templates/pages/Register/Register2';

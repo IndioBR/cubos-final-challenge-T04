@@ -1,9 +1,12 @@
 import P from 'prop-types';
 import * as Styled from './styles';
+import { colorSelector } from './selector';
 
-export const AmountCard = ({ amount = 0, name = '', src = '', color = '' }) => {
+export const AmountCard = ({ amount = 0, name = '' }) => {
+  const { backgroundColor, src } = colorSelector(name);
+
   return (
-    <Styled.Container color={color}>
+    <Styled.Container color={backgroundColor}>
       <Styled.CardImage src={src} />
       <div>
         <Styled.CardName>
@@ -23,6 +26,4 @@ export const AmountCard = ({ amount = 0, name = '', src = '', color = '' }) => {
 AmountCard.propTypes = {
   amount: P.number.isRequired,
   name: P.string.isRequired,
-  src: P.string.isRequired,
-  color: P.string.isRequired
 };
