@@ -9,8 +9,16 @@ export const Container = styled.input`
 `;
 
 export const Label = styled.label`
-  ${({ theme }) => css`
+  ${({ theme, equal }) => css`
   margin-top: 1rem;
+
+  ${!equal && css`
+    &::after {
+      content: 'As senhas devem ser iguais';
+      color: ${theme.colors.feedback.error}
+    }
+  `}
+
   > div{
     display: flex;
     flex-direction: row;
@@ -21,19 +29,20 @@ export const Label = styled.label`
       text-decoration: underline;
       color: ${theme.colors.defaults.pink}
     }
+    > span {
+      font-weight: 400;
+      color: ${equal ? theme.colors.grays.gray2 : theme.colors.feedback.error};
+    }
   }
 
-  > span {
-    font-weight: 400;
-    color: ${theme.colors.grays.gray2};
-  }
+
 
   .input {
     cursor: text;
     width: 100%;
     border-radius: 0.6rem;
     margin-top: 0.3rem;
-    border: 0.1rem solid ${theme.colors.grays.gray4};
+    border: ${equal ? `0.1rem solid ${theme.colors.grays.gray4}` : `0.1rem solid ${theme.colors.feedback.error}`};
     padding: 0.7rem;
 
     > img {

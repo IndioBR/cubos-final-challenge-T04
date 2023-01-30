@@ -6,8 +6,11 @@ import hide_password from '../../../assets/hide-password.svg';
 import show_password from '../../../assets/show-password.svg';
 
 
-export const Input = ({ label = '', required = false, ph, fgtPassword = false, type = 'text', passwordImg = false }) => {
+export const Input = ({ label = '', required = false, min, ph, fgtPassword = false, type = 'text', passwordImg = false, equal = true }) => {
   const [show, setShow] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const [inputValue, setInputValue] = useState('');
+
 
   const showPassword = () => {
     if (show) return show_password;
@@ -22,13 +25,13 @@ export const Input = ({ label = '', required = false, ph, fgtPassword = false, t
   }
 
   return (
-    <Styled.Label>
+    <Styled.Label equal={equal}>
       <div>
         <span>{label}{required && '*'}</span>
         {fgtPassword && <a>Esqueceu a Senha?</a>}
       </div>
       <div className='input'>
-        <Styled.Container placeholder={ph} type={typeSetter(type)} />
+        <Styled.Container placeholder={ph} required={required} type={typeSetter(type)} value={inputValue} minLength={min} onChange={e => setInputValue(e.target.value)} />
         {passwordImg && <img src={showPassword()} onClick={() => setShow(!show)} />}
       </div>
     </Styled.Label>
@@ -42,4 +45,6 @@ Input.propTypes = {
   ph: P.string.isRequired,
   fgtPassword: P.bool,
   passwordImg: P.bool,
+  equal: P.bool,
+  min: P.number,
 };
