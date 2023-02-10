@@ -11,9 +11,11 @@ export const ChargesCard = ({ charges = [], name }) => {
     <Styled.Container>
       <CardTitle title_name={name} clients_count={charges.length} />
       <CardFields middle='ID da Cob.' />
-      {charges.map((charge) =>
-        <Charge {...charge} key={charge.charge_id} />
-      )}
+      <div className='card_container'>
+        {charges.map((charge) =>
+          <Charge {...charge} key={charge.charge_id} />
+        )}
+      </div>
       <CardButton />
     </Styled.Container>
   )
@@ -23,9 +25,9 @@ ChargesCard.propTypes = {
   name: P.string.isRequired,
   charges: P.arrayOf(
     P.shape({
-      client_name: P.string.isRequired,
-      charge_value: P.number.isRequired,
-      charge_id: P.number.isRequired,
+      debtor: P.string.isRequired,
+      amount: P.number.isRequired,
+      id_billing: P.number.isRequired,
     })
   ),
 };

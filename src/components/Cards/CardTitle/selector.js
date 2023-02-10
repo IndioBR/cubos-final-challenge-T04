@@ -10,13 +10,13 @@ export const colorSelector = (type) => {
       }
     case 'Cobranças Pagas':
       return {
-        backgroundColor: '#f5d9b0',
-        color: '#ef8f00',
+        backgroundColor: '#acd9c5',
+        color: '#0e8750',
       }
     case 'Cobranças Previstas':
       return {
-        backgroundColor: '#acd9c5',
-        color: '#0e8750',
+          backgroundColor: '#f5d9b0',
+          color: '#ef8f00',
       }
     case 'Clientes Inadimplentes':
       return {

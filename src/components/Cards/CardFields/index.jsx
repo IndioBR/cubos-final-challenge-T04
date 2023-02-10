@@ -6,7 +6,7 @@ export const CardFields = ({ middle }) => {
     <Styled.Container>
       <Styled.Field>Cliente</Styled.Field>
       <Styled.Field>{middle}</Styled.Field>
-      <Styled.Field>Valor</Styled.Field>
+      <Styled.Field className='value_field'>Valor</Styled.Field>
     </Styled.Container>
   );
 };

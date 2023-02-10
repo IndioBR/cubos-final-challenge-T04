@@ -8,9 +8,12 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     border-bottom: 0.1rem solid ${theme.colors.grays.gray3};
-    padding: 0 1rem 1.5rem 1rem;
-    margin-top: 1.5rem;
+    padding: 0 1rem 0.8rem 1rem;
+    margin-top: 0.8rem;
     text-align: start;
+    > .value_field {
+      text-align: start;
+    }
   `}
 `;
 export const Field = styled.span`
@@ -18,5 +21,6 @@ export const Field = styled.span`
     width: 17%;
     font-weight: 900;
     color: ${theme.colors.grays.gray1};
+    text-align: center;
   `}
 `;

@@ -1,12 +1,15 @@
 import { useContext } from 'react';
 import { MyContext } from '../../components/Contexts';
-import { Navigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
+import { Loading } from '../../components/Loading';
 
 export const Private = () => {
-  const { authenticated } = useContext(MyContext);
+  const { authenticated, setUser } = useContext(MyContext);
+  const navigate = useNavigate();
 
   if (!authenticated) {
-    return <Navigate to='/' />
+    setUser('')
+    return navigate('/');
   }
 
   return <Outlet />

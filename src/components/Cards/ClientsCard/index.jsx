@@ -5,13 +5,13 @@ import { CardFields } from '../CardFields';
 import { Charge } from './Charge';
 import { CardButton } from '../CardButton'
 
-export const ClientsCard = ({ title, charges = [] }) => {
+export const ClientsCard = ({ title, clients = [] }) => {
   return (
     <Styled.Container>
-      <CardTitle title_name={title} clients_count={charges.length} />
+      <CardTitle title_name={title} clients_count={clients.length} />
       <CardFields middle='Data de Venc.' />
-      {charges.map((charge) =>
-        <Charge {...charge} key={charge.id} />
+      {clients.map((client) =>
+        <Charge {...client} key={client.id} />
       )}
       <CardButton />
     </Styled.Container>
@@ -21,7 +21,7 @@ export const ClientsCard = ({ title, charges = [] }) => {
 ClientsCard.propTypes = {
   title: P.string.isRequired,
   count: P.number.isRequired,
-  charges: P.arrayOf(
+  clients: P.arrayOf(
     P.shape({
       client_name: P.string.isRequired,
       charge_value: P.number.isRequired,

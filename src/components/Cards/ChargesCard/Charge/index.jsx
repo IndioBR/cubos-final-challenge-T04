@@ -1,7 +1,7 @@
 import P from 'prop-types';
 import * as Styled from './styles';
 
-export const Charge = ({ client_name = '', charge_value = '', charge_id = '' }) => {
+export const Charge = ({ debtor = '', amount = 0, id_billing = '' }) => {
   const valueFormat = (value) => {
     const string = value.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
 
@@ -11,18 +11,25 @@ export const Charge = ({ client_name = '', charge_value = '', charge_id = '' }) 
     }
     return string;
   }
+  const truncate = (value) => {
+
+    if (value.length > 12) {
+      return value.slice(0, 12) + '...';
+    }
+    return value;
+  }
 
   return (
     <Styled.Container>
-      <Styled.Info>{client_name}</Styled.Info>
-      <Styled.Info>{charge_id}</Styled.Info>
-      <Styled.Info>{valueFormat(charge_value)}</Styled.Info>
+      <Styled.Info className='cli_field'>{debtor}</Styled.Info>
+      <Styled.Info>{id_billing}</Styled.Info>
+      <Styled.Info className='value_field'>{valueFormat(amount)}</Styled.Info>
     </Styled.Container>
   );
 };
 
 Charge.propTypes = {
-  client_name: P.string.isRequired,
-  charge_value: P.number.isRequired,
-  charge_id: P.number.isRequired,
+  debtor: P.string.isRequired,
+  amount: P.number.isRequired,
+  id_billing: P.number.isRequired,
 };

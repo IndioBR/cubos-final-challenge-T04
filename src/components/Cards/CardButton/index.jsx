@@ -8,7 +8,3 @@ export const CardButton = () => {
     </Styled.Container>
   );
 };
-
-CardButton.propTypes = {
-  children: P.node.isRequired,
-};

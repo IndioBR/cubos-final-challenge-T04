@@ -5,6 +5,7 @@ export const Container = styled.input`
     all: unset;
     cursor: initial;
     min-height: 2.4rem;
+    width: 100%;
   `}
 `;
 

@@ -1,10 +1,10 @@
-import { EditRegister } from '.';
+import { SettingsModal } from '.';
 
 export default {
-  title: 'EditRegister',
-  component: EditRegister,
+  title: 'SettingsModal',
+  component: SettingsModal,
   args: {
-    children: 'EditRegister',
+    children: 'SettingsModal',
   },
   argTypes: {
     children: { type: 'string' },
@@ -14,7 +14,7 @@ export default {
 export const Template = (args) => {
   return (
     <div>
-      <EditRegister {...args} />
+      <SettingsModal {...args} />
     </div>
   );
 };

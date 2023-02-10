@@ -1,6 +1,18 @@
 import styled, { css } from 'styled-components';
+import { Container as SettingsModal } from '../SettingsModal/styles';
 
 export const Container = styled.div`
+  ${({ theme }) => css`
+    position: absolute;
+
+    > ${SettingsModal} {
+      position: absolute;
+      right: 0;
+    }
+  `};
+`;
+
+export const TopBar = styled.div`
   ${({ theme }) => css`
     display: flex;
     flex-direction: row;
