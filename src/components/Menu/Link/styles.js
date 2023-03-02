@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import { TextComponent } from '../../TextComponent';
 
 
 
-export const Container = styled.a`
+export const Container = styled(NavLink)`
   ${({ theme, selected }) => css`
     display: flex;
     flex-direction: column;
@@ -16,7 +16,9 @@ export const Container = styled.a`
       color: ${selected ? theme.colors.defaults.pink : theme.colors.grays.gray2};
     }
 
-    ${selected && css`border-right: 0.15rem solid ${theme.colors.defaults.pink};`}
+    &.active {
+      border-right: 0.15rem solid ${theme.colors.defaults.pink}
+    }
   `}
 `;
 

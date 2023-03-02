@@ -7,98 +7,95 @@ import { ClientsCard } from '../../../components/Cards/ClientsCard';
 import { Navigate } from 'react-router-dom';
 import { MyContext } from '../../../components/Contexts';
 import { Loading } from '../../../components/Loading';
+import { filterAmounts, filteredClients } from './_utils/homeReq';
 
 export const Home = () => {
-  const { user } = useContext(MyContext);
+  const { user, setUser } = useContext(MyContext);
   const [amounts, setAmounts] = useState([]);
   const [clients, setClients] = useState([]);
 
-
   useEffect(() => {
     const token = localStorage.getItem('token');
-    try {
-      fetch(`http://localhost:8000/api/installments`, {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-      }).then(r => r.json())
-        .then(r => {
-          const obj = filterAmounts(r);
-          setAmounts(obj);
+    let loyal = null;
+    let debtor = null;
+    if (user && token) (async () => {
+      try {
+        const req = await fetch(`http://localhost:8000/api/installments?filter=users_id:=:${user.id}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
         });
-    } catch (error) {
-      console.error(error.message);
-    }
-  }, []);
 
+        if (req.status !== 200) throw new Error(res.error);
 
-  const filterAmounts = (data) => {
-    const loyalClients = data.filter((ins) => {
-      return ins.status === 'Paid';
-    });
+        const res = await req.json();
 
-    const overdueClients = data.filter((ins) => {
-      return ins.overdue_payment === 1;
-    });
+        const filteredData = filterAmounts(res);
 
-    const forseenClients = data.filter((ins) => {
-      return ins.overdue_payment === 0 && (ins.status === 'Open' || ins.status === 'Partially paid');
-    });
+        setAmounts(filteredData);
+      } catch (error) {
+        console.error(error.message);
+      }
 
-    const paidArr = loyalClients.map((cli) => {
-      return cli.amount;
-    });
+      try {
+        const req = await fetch(`http://localhost:8000/api/debtors/defaulters/user/${user.id}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
 
-    const pendingArr = forseenClients.map((cli) => {
-      return cli.amount;
-    });
+        if (req.status !== 200) throw new Error(res.error);
 
-    const overdueArr = overdueClients.map((cli) => {
-      return cli.amount;
-    });
+        const res = await req.json();
 
-    let paidValue = 0;
-    let pendingValue = 0;
-    let overdueValue = 0;
+        debtor = res;
+      } catch (error) {
+        console.error(error.message);
+      }
 
-    for (let i = 0; i < paidArr.length; i++) {
-      paidValue += paidArr[i];
-    }
-    for (let i = 0; i < pendingArr.length; i++) {
-      pendingValue += pendingArr[i];
-    }
-    for (let i = 0; i < overdueArr.length; i++) {
-      overdueValue += overdueArr[i];
-    }
+      try {
+        const req = await fetch(`http://localhost:8000/api/debtors/payers/user/${user.id}`, {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+        });
 
-    return [
-      {
-        name: 'Cobranças Pagas',
-        value: paidValue,
-        obj: loyalClients
-      },
-      {
-        name: 'Cobranças Previstas',
-        value: pendingValue,
-        obj: forseenClients
-      },
-      {
-        name: 'Cobranças Vencidas',
-        value: overdueValue,
-        obj: overdueClients
-      },
-    ]
-  }
+        if (req.status !== 200) throw new Error(res.error);
 
-  if (!amounts || !clients) return <Loading />;
+        const res = await req.json();
+
+        loyal = res;
+      } catch (error) {
+        console.error(error.message);
+      }
+
+      if (loyal && debtor) {
+        setClients([
+          {
+            title: 'Clientes Inadimplentes',
+            obj: debtor
+          },
+          {
+            title: 'Clientes Em Dia',
+            obj: loyal
+          }
+        ]);
+
+      }
+    })();
+  }, [user]);
 
   return (
     <Styled.Container>
       <Base page='Início'>
         <div className='Amount'>
-          {amounts.map(amount =>
+          {amounts && amounts.map(amount =>
             <AmountCard
               amount={amount.value}
               name={amount.name}
@@ -107,19 +104,19 @@ export const Home = () => {
           )}
         </div>
         <div className='Charges'>
-          {amounts.map(charge =>
+          {amounts && amounts.map(charge =>
             <ChargesCard
-              key={charge.name}
+              key={charge.name + ' Charge'}
               charges={charge.obj}
               name={charge.name}
             />
           )}
         </div>
         <div className='Clients'>
-          {clients.map(client =>
+          {clients && clients.map(client =>
             <ClientsCard
-              key={client.name}
-              charges={client.charges}
+              key={client.title}
+              data={client.obj}
               title={client.title}
             />
           )}

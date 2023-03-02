@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
-  ${({ theme }) => css`
+  ${({ theme, statBg, statColor }) => css`
     width: 100%;
     text-align: start;
     max-height: 2rem;
@@ -15,14 +15,21 @@ export const Container = styled.div`
     border-bottom: 1px solid ${theme.colors.grays.gray4};
 
     > span {
-      width: 10%;
+      width: 8%;
+    }
+
+    > .status_field {
+      text-align: center;
+      color: ${statColor};
+      background-color: ${statBg};
+      border-radius: 2rem;
     }
 
     > .charge_img {
       display: flex;
       flex-direction: column;
       justify-content: start;
-      align-items: flex-start;
+      align-items: center;
       color: ${theme.colors.defaults.pink};
       font-size: 0.7rem;
       > img {

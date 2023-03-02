@@ -33,26 +33,22 @@ export const LoginForm = () => {
         body: JSON.stringify(data),
       });
 
-      const promise = await req.json();
+      const res = await req.json();
 
-      if (req.status !== 200) throw new Error(promise.error);
-
-      const res = await promise;
+      if (req.status !== 200) throw new Error(res.error);
 
       localStorage.setItem('token', res.token);
-      localStorage.setItem('user_id', res.user.id);
-      localStorage.setItem('user_name', res.user.name);
-      localStorage.setItem('user_aka', res.user.aka);
-      localStorage.setItem('user_email', res.user.email);
 
-      setUser(res.user);
+      const logged = res.user;
+
+      localStorage.setItem('user', JSON.stringify(logged));
+
+      setUser(logged);
       goTo('/home');
 
     } catch (error) {
       console.error(error);
     }
-
-
   }
 
   return (

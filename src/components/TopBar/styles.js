@@ -6,6 +6,7 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     padding: 1.4rem;
     border-bottom: 0.1rem solid ${theme.colors.defaults.lightGreen};
     max-height: 6rem;

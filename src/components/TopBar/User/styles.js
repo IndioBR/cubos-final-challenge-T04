@@ -3,7 +3,8 @@ import { Container as SettingsModal } from '../SettingsModal/styles';
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    position: absolute;
+    position: relative;
+    right: 0;
 
     > ${SettingsModal} {
       position: absolute;

@@ -10,12 +10,9 @@ export const ClientsContainer = ({ clients }) => {
     <Styled.Container>
       <ClientTitles />
       <div className='clients_container'>
-        {clients.map(client =>
+        {clients && clients.map(client =>
           <ClientFields {...client} key={client.id} />
         )}
-      </div>
-      <div className='btn'>
-        <CardButton />
       </div>
     </Styled.Container>
   );
@@ -24,11 +21,11 @@ export const ClientsContainer = ({ clients }) => {
 ClientsContainer.propTypes = {
   clients: P.arrayOf(
     P.shape({
-      client_name: P.string.isRequired,
-      client_email: P.string.isRequired,
-      client_cpf: P.string.isRequired,
-      client_phone: P.string,
-      client_status: P.string.isRequired,
+      name: P.string.isRequired,
+      email: P.string.isRequired,
+      cpf: P.string.isRequired,
+      phone: P.string,
+      status: P.string.isRequired,
     })
   ).isRequired,
 };

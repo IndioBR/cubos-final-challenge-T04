@@ -5,7 +5,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    width: 5rem;
+    min-width: 5rem;
     height: 3rem;
     padding: 1rem;
     background-color: white;

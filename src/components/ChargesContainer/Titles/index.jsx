@@ -2,7 +2,7 @@ import P from 'prop-types';
 import * as Styled from './styles';
 import arrows from '../../../assets/arrows.svg';
 
-export const ClientTitles = () => {
+export const ChargesTitles = () => {
   return (
     <Styled.Container>
       <div>
@@ -11,19 +11,20 @@ export const ClientTitles = () => {
           Cliente
         </span>
         <span>
-          CPF
+          <img src={arrows} alt="arrows" />
+          ID Cob.
         </span>
         <span>
-          E-mail
+          Valor
         </span>
         <span>
-          Telefone
+          Data de venc.
         </span>
         <span>
           Status
         </span>
         <span>
-          Criar Cobrança
+          Descrição
         </span>
       </div>
     </Styled.Container>

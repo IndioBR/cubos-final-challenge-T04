@@ -1,17 +1,25 @@
 import P from 'prop-types';
 import * as Styled from './styles';
 import { colorSelector } from './selector'
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 export const CardTitle = ({ title_name = '', clients_count = 0 }) => {
-  const color = colorSelector(title_name);
+  const [selected, setSelected] = useState({});
+
+  useEffect(() => {
+    const color = colorSelector(title_name);
+
+    color && setSelected(color);
+  }, [title_name]);
 
   return (
     <Styled.Container>
       <div>
-        {color.src && <Styled.Image src={color.src} />}
+        {selected.src && <Styled.Image src={selected.src} />}
         <Styled.Title as='h3'>{title_name}</Styled.Title>
       </div>
-      <Styled.TitleCount back={color.backgroundColor} color={color.color}>{clients_count}</Styled.TitleCount>
+      <Styled.TitleCount back={selected.backgroundColor} color={selected.color}>{clients_count}</Styled.TitleCount>
     </Styled.Container>
   );
 };

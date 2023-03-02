@@ -5,7 +5,7 @@ import { TextComponent } from '../../TextComponent';
 export const Link = ({ src, link = '#', alt = '', page = '', selected = false }) => {
 
   return (
-    <Styled.Container href={link} selected={selected} >
+    <Styled.Container to={link} selected={selected} >
       <Styled.Image src={src} alt={alt} />
       <span>{page}</span>
     </Styled.Container>

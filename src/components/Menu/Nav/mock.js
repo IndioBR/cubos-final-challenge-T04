@@ -16,7 +16,7 @@ export const mock = [
   {
     primarySVG: client,
     secondarySVG: clientSelected,
-    link: '/client',
+    link: '/clients',
     alt: 'client',
     page: 'Clientes',
   },

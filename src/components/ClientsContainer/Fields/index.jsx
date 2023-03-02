@@ -1,17 +1,35 @@
 import P from 'prop-types';
 import * as Styled from './styles';
 import addCharge from '../../../assets/add-charge.svg';
+import { useEffect, useState } from 'react';
+import { colorSelector } from './selector'
 
-export const ClientFields = ({ client_name, client_email, client_cpf, client_phone, client_status }) => {
+export const ClientFields = ({ name, email, cpf, phone, status }) => {
+  const [statusStyle, setStatusStyle] = useState({});
+
+  useEffect(() => {
+    const style = colorSelector(status);
+
+    style && setStatusStyle(style)
+  }, [status]);
+
+  const truncate = (value) => {
+
+    if (value.length > 20) {
+      return value.slice(0, 20) + '...';
+    }
+    return value;
+  }
+
   return (
-    <Styled.Container>
-      <span>{client_name}</span>
-      <span>{client_cpf}</span>
-      <span>{client_email}</span>
+    <Styled.Container statBg={statusStyle.backgroundColor} statColor={statusStyle.color}>
+      <span>{truncate(name)}</span>
+      <span>{cpf}</span>
+      <span>{email}</span>
       <span>
-        {client_phone ? client_phone : 'Insira um número de Telefone'}
+        {phone ? phone : 'Insira um número de Telefone'}
       </span>
-      <span>{client_status}</span>
+      <span className='status_field'>{statusStyle.status}</span>
       <span className='charge_img'>
         <img src={addCharge} alt="" />
         Cobrança
@@ -22,9 +40,9 @@ export const ClientFields = ({ client_name, client_email, client_cpf, client_pho
 };
 
 ClientFields.propTypes = {
-  client_name: P.string.isRequired,
-  client_email: P.string.isRequired,
-  client_cpf: P.string.isRequired,
-  client_phone: P.string,
-  client_status: P.string.isRequired,
+  name: P.string.isRequired,
+  email: P.string.isRequired,
+  cpf: P.string.isRequired,
+  phone: P.string,
+  status: P.string.isRequired,
 };
