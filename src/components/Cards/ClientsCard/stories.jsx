@@ -1,5 +1,4 @@
 import { ClientsCard } from '.';
-import { mock } from './mock';
 
 export default {
   title: 'ClientsCard',
@@ -7,7 +6,11 @@ export default {
   args: {
     title: 'Clientes Inadimplentes',
     count: 6,
-    charges: mock,
+    charges: {
+      name: 'Jonatas',
+      id: 8,
+      cpf: '05616370169'
+    },
   },
   argTypes: {
     children: { type: 'string' },

@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
   const [editUserModal, setEditUserModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [feedbackActive, setFeedbackActive] = useState(true);
 
 
   const token = localStorage.getItem('token');
@@ -20,8 +22,18 @@ export const AuthProvider = ({ children }) => {
     registerEmail, setRegisterEmail,
     user, setUser,
     loading, setLoading,
-    editUserModal, setEditUserModal
+    editUserModal, setEditUserModal,
+    showModal, setShowModal,
+    feedbackActive, setFeedbackActive,
   }
+
+  useEffect(() => {
+    if (feedbackActive) {
+      setTimeout(() => {
+        setFeedbackActive(false);
+      }, 3000);
+    }
+  }, [feedbackActive]);
 
   return (
     <MyContext.Provider value={values}>

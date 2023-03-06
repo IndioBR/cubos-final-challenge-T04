@@ -3,6 +3,7 @@ import { Input } from '../Input';
 
 export const Container = styled.div`
   ${({ theme }) => css`
+    z-index: 8;
     width: 100%;
     height: 100vh;
     display: flex;
@@ -10,8 +11,9 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     background-color: ${theme.colors.defaults.modalBlur};
+    position: fixed;
+    inset: 0;
     > form {
-      position: absolute;
       padding: 3rem 4rem;
       width: 45rem;
       background-color: white;

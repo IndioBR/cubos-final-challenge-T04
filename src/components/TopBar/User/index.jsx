@@ -3,10 +3,12 @@ import * as Styled from './styles';
 import arrow from '../../../assets/arrow-down.svg';
 import { SettingsModal } from '../SettingsModal';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { MyContext } from '../../Contexts';
 
 
 export const User = ({ children, aka = '' }) => {
-  const [showModal, setShowModal] = useState(false);
+  const {showModal, setShowModal} = useContext(MyContext);
   return (
     <Styled.Container>
       <Styled.TopBar>

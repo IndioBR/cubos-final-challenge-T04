@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { MyContext } from '../../Contexts';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export const SettingsModal = () => {
   const { editUserModal, setEditUserModal, setUser } = useContext(MyContext);
@@ -15,7 +16,7 @@ export const SettingsModal = () => {
     setUser({});
     localStorage.clear();
     return <Navigate to='/' />
-  }
+  };
 
   return (
     <Styled.Container>
@@ -30,8 +31,4 @@ export const SettingsModal = () => {
       </div>
     </Styled.Container>
   );
-};
-
-SettingsModal.propTypes = {
-  children: P.node.isRequired,
 };

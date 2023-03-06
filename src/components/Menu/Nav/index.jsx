@@ -12,7 +12,6 @@ export const Nav = () => {
   return (
     <Styled.Container>
       {mock.map(item => {
-        console.log(location.pathname === item.link)
         return (
           <Link
             alt={item.alt}

@@ -6,7 +6,18 @@ import hide_password from '../../../assets/hide-password.svg';
 import show_password from '../../../assets/show-password.svg';
 
 
-export const Input = ({ label = '', required = false, autoComplete, min, ph, fgtPassword = false, type = 'text', passwordImg = false, equal = true }) => {
+export const Input = ({
+    label = '',
+    required = false,
+    autoComplete,
+    min,
+    max,
+    ph,
+    fgtPassword = false,
+    type = 'text',
+    passwordImg = false,
+    equal = true
+  }) => {
   const [show, setShow] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [inputValue, setInputValue] = useState('');
@@ -31,7 +42,15 @@ export const Input = ({ label = '', required = false, autoComplete, min, ph, fgt
         {fgtPassword && <a>Esqueceu a Senha?</a>}
       </div>
       <div className='input'>
-        <Styled.Container placeholder={ph} required={required} type={typeSetter(type)} value={autoComplete ? autoComplete : inputValue} minLength={min} onChange={e => setInputValue(e.target.value)} />
+        <Styled.Container
+          placeholder={ph}
+          required={required}
+          type={typeSetter(type)}
+          value={autoComplete ? autoComplete : inputValue}
+          minLength={min}
+          onChange={e => setInputValue(e.target.value)}
+          maxLength={max}
+        />
         {passwordImg && <img src={showPassword()} onClick={() => setShow(!show)} />}
       </div>
     </Styled.Label>
@@ -48,4 +67,5 @@ Input.propTypes = {
   passwordImg: P.bool,
   equal: P.bool,
   min: P.number,
+  max: P.number,
 };

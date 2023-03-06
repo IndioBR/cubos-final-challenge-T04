@@ -23,4 +23,10 @@ export const GlobalStyles = createGlobalStyle`
     cursor: pointer;
     pointer-events: all;
   }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;

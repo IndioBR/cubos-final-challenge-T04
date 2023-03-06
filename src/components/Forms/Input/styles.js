@@ -19,6 +19,11 @@ export const Label = styled.label`
       color: ${theme.colors.feedback.error}
     }
   `}
+  ${equal && css`
+    &::after {
+      content: '';
+    }
+  `}
 
   > div{
     display: flex;
@@ -31,7 +36,7 @@ export const Label = styled.label`
       color: ${theme.colors.defaults.pink}
     }
     > span {
-      font-weight: 400;
+      font-weight: 700;
       color: ${equal ? theme.colors.grays.gray2 : theme.colors.feedback.error};
     }
   }
