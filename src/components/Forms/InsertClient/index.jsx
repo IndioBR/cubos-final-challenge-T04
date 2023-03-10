@@ -7,14 +7,13 @@ import { useState } from 'react';
 import { Button } from '../../Button';
 
 export const InsertClient = ({ client = {} }) => {
-  const [mode, setMode] = useState(false);
   return (
     <Styled.Container>
       <div className='form_container'>
         <div className='form_top'>
           <div className='form_title'>
             <img src={clients} alt="Clients" />
-            <h1>{mode ? 'Editar' : 'Cadastro do'} Cliente</h1>
+            <h1>{client ? 'Editar' : 'Cadastro do'} Cliente</h1>
           </div>
           <img src={close} alt="" />
         </div>
@@ -37,7 +36,7 @@ export const InsertClient = ({ client = {} }) => {
             <Input
             label='CPF'
             required
-            autoComplete={client?.cpf && client.cpf}
+            autoComplete={client && client.cpf}
             min={11}
             max={11}
             ph='Insira o CPF'
@@ -50,7 +49,7 @@ export const InsertClient = ({ client = {} }) => {
             min={10}
             max={14}
             ph='Insira o Telefone'
-            type='number'
+            type='tel'
           />
           </div>
           <Input

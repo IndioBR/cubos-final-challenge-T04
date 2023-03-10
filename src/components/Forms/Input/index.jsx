@@ -4,6 +4,7 @@ import * as Styled from './styles';
 
 import hide_password from '../../../assets/hide-password.svg';
 import show_password from '../../../assets/show-password.svg';
+import { useEffect } from 'react';
 
 
 export const Input = ({
@@ -35,6 +36,12 @@ export const Input = ({
     return tp;
   }
 
+  useEffect(() => {
+    if (autoComplete) {
+      setInputValue(autoComplete);
+    }
+  }, [autoComplete]);
+
   return (
     <Styled.Label equal={equal}>
       <div>
@@ -46,7 +53,7 @@ export const Input = ({
           placeholder={ph}
           required={required}
           type={typeSetter(type)}
-          value={autoComplete ? autoComplete : inputValue}
+          value={inputValue}
           minLength={min}
           onChange={e => setInputValue(e.target.value)}
           maxLength={max}
@@ -60,7 +67,7 @@ export const Input = ({
 Input.propTypes = {
   label: P.string.isRequired,
   type: P.string.isRequired,
-  required: P.bool.isRequired,
+  required: P.bool,
   ph: P.string.isRequired,
   autoComplete: P.string,
   fgtPassword: P.bool,

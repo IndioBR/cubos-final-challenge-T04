@@ -27,7 +27,7 @@ ChargesCard.propTypes = {
     P.shape({
       debtor: P.object.isRequired,
       amount: P.number.isRequired,
-      id_billing: P.number.isRequired,
+      id_billing: P.string.isRequired,
     })
   ),
 };

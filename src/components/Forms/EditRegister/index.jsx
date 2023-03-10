@@ -11,48 +11,43 @@ export const EditRegister = () => {
   const { user, setEditUserModal } = useContext(MyContext);
   const [equal, setEqual] = useState(true);
 
-  const handleSubmit = async (e) => {
-    const token = localStorage.getItem('token');
-    const data = {
-      name: e.target[0].value,
-      email: e.target[1].value,
-      password: e.target[4].value,
-      cpf: e.target[2]?.value,
-      phone: e.target[3]?.value,
-    }
-    try {
-      const req = await fetch(`http://localhost:8000/api/users/${user.id}`, {
-        method: 'PATCH',
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-          body: JSON.stringify(data),
-      });
+  const token = localStorage.getItem('token');
 
-      if (req.status !== 200) throw new Error(req.error);
-
-      const res = await req.json();
-
-      setEditUserModal(false)
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const validatePassword = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (e.target[5].value !== e.target[4].value) {
-      return setEqual(false);
-    } else {
-      setEqual(true);
-      handleSubmit(e);
+
+    if (e.target[4].value !== e.target[5].value) return setEqual(false);
+    if (e.target[4].value !== e.target[5].value) setEqual(true);
+
+    const data = {
+      "_method": "PATCH",
+      "name": e.target[0].value,
+      "email": e.target[1].value,
+      "password": e.target[4].value,
+      "cpf": e.target[2].value,
+      "phone": e.target[3].value,
+    };
+    console.log(JSON.stringify(data));
+    try {
+      fetch(`http://localhost:8000/api/users/${user.id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(data),
+      }).then(p => p.json()).then(r => console.log(r)).catch(err => {
+        throw new Error(err);
+      }).finally(() => setEditUserModal(false));
+    } catch (error) {
+      console.error(error.msg);
     }
   }
+
 
   return (
     <Styled.Container>
-      <form id='edit-form' onSubmit={validatePassword}>
+      <form id='edit-form' onSubmit={handleSubmit}>
         <h1>Edite seu Cadastro</h1>
         <img src={close} alt="close" onClick={() => setEditUserModal(false)} />
         <Input label='Nome' type='text' required ph='Digite seu nome' autoComplete={user.name} />

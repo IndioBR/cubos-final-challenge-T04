@@ -31,5 +31,5 @@ export const Charge = ({ debtor = '', amount = 0, id_billing = '' }) => {
 Charge.propTypes = {
   debtor: P.object.isRequired,
   amount: P.number.isRequired,
-  id_billing: P.number.isRequired,
+  id_billing: P.string.isRequired,
 };

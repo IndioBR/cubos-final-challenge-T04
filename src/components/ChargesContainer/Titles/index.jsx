@@ -1,15 +1,17 @@
 import P from 'prop-types';
 import * as Styled from './styles';
 import arrows from '../../../assets/arrows.svg';
+import { useLocation } from 'react-router-dom';
 
 export const ChargesTitles = () => {
+  const location = useLocation();
   return (
     <Styled.Container>
       <div>
-        <span>
+        {location.pathname == 'charges' && (<span>
           <img src={arrows} alt="arrows" />
           Cliente
-        </span>
+        </span>)}
         <span>
           <img src={arrows} alt="arrows" />
           ID Cob.
