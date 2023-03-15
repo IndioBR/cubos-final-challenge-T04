@@ -5,8 +5,11 @@ import clients from '../../../assets/clients.svg';
 import close from '../../../assets/x.svg';
 import { useState } from 'react';
 import { Button } from '../../Button';
+import { useContext } from 'react';
+import {MyContext} from '../../Contexts/index';
 
-export const InsertClient = ({ client = {} }) => {
+export const InsertClient = ({ client }) => {
+  const {setInsertClientForm} = useContext(MyContext);
   return (
     <Styled.Container>
       <div className='form_container'>
@@ -15,7 +18,7 @@ export const InsertClient = ({ client = {} }) => {
             <img src={clients} alt="Clients" />
             <h1>{client ? 'Editar' : 'Cadastro do'} Cliente</h1>
           </div>
-          <img src={close} alt="" />
+          <img src={close} alt="" onClick={() => setInsertClientForm(false)}/>
         </div>
         <form>
           <Input
@@ -67,25 +70,25 @@ export const InsertClient = ({ client = {} }) => {
           <div className='asides_bottom'>
             <Input
             label='CEP'
-            autoComplete={client?.cep && client.name}
+            autoComplete={client?.cep && client.cep}
             ph='Insira o CEP'
             type='text'
             />
             <Input
               label='Bairro'
-              autoComplete={client?.neighborhood && client.name}
+              autoComplete={client?.neighborhood && client.neighborhood}
               ph='Insira o Bairro'
               type='text'
             />
             <Input
               label='Cidade'
-              autoComplete={client?.city && client.name}
+              autoComplete={client?.city && client.city}
               ph='Insira o Cidade'
               type='text'
             />
             <Input
               label='UF'
-              autoComplete={client?.state && client.name}
+              autoComplete={client?.state && client.state}
               ph='Insira o UF'
               type='text'
             />
@@ -104,5 +107,4 @@ export const InsertClient = ({ client = {} }) => {
 
 InsertClient.propTypes = {
   client: P.object,
-
 }

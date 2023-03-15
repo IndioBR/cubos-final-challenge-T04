@@ -13,6 +13,7 @@ export const ClientsPage = () => {
 
   const { user } = useContext(MyContext);
 
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -29,7 +30,7 @@ export const ClientsPage = () => {
         if (req.status !== 200) throw new Error(res.error);
 
         const res = await req.json();
-        setClients(res)
+        setClients(res);
       } catch (error) {
         console.error(error.message);
       }
@@ -38,7 +39,7 @@ export const ClientsPage = () => {
 
   return (
     <Styled.Container>
-      <Base page='Clientes'>
+      <Base page={'Clientes'}>
         <MiddleDiv page='Clientes'/>
         <ClientsContainer clients={clients} />
       </Base>

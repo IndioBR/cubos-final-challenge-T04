@@ -12,6 +12,10 @@ export const TopBar = ({ page = '' }) => {
 
   const pageTitle = (page) => {
     if (page === 'Início') return 'Resumo de Cobranças';
+    if (page.includes('>')) {
+      const split = page.split(' > ')
+      return <span><span style={{ color:'#0E8750'}}>{split[0]}</span>{' > ' + split[1]}</span>;
+    }
     return page;
   };
 
@@ -31,7 +35,7 @@ export const TopBar = ({ page = '' }) => {
 
   return (
     <Styled.Container>
-      <Styled.PageTitle>{pageTitle(page)}</Styled.PageTitle>
+      <Styled.PageTitle page={page}>{pageTitle(page)}</Styled.PageTitle>
       <User aka={user.aka}>{user.name}</User>
     </Styled.Container>
   );

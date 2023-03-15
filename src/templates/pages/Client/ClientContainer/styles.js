@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 export const Container = styled.div`
   ${({ theme }) => css`
-    width: 90%;
+    width: 100%;
     height: 90%;
     > .client_title {
       display: flex;
@@ -24,6 +24,7 @@ export const Container = styled.div`
         margin-bottom: 3rem;
         > .client_edit {
           display: flex;
+          cursor: pointer;
           flex-direction: row;
           align-items: center;
           gap: 1rem;
@@ -75,6 +76,7 @@ export const Container = styled.div`
           font-weight: 500;
           font-size: 1.2rem;
           border-radius: .5rem;
+          cursor: pointer;
         }
       }
     }

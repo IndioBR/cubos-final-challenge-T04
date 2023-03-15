@@ -5,11 +5,16 @@ import editIcon from '../../../assets/edit.svg';
 import { selector } from './selector';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import {InsertCharges} from '../../Forms/InsertCharges';
+import { useContext } from 'react';
+import { MyContext } from '../../Contexts';
+import { DeleteCharge } from '../../Forms/DeleteCharge';
 
 
 
 export const ChargesFields = ({ debtor, id_billing, amount, due_date, description, status }) => {
   const [style, setStyle] = useState({});
+  const {insertChargeForm, setInsertChargeForm, deleteChargeForm, setDeleteChargeForm} = useContext(MyContext);
 
   useEffect(() => {
     if (status) {
@@ -26,8 +31,19 @@ export const ChargesFields = ({ debtor, id_billing, amount, due_date, descriptio
     return value;
   }
 
+  const charge = {
+    debtor,
+    id_billing,
+    amount,
+    due_date,
+    description,
+    status
+  }
+
   return (
     <Styled.Container status_bg={style.background} status_color={style.color}>
+      {insertChargeForm && <InsertCharges charge={charge}/>}
+      {deleteChargeForm && <DeleteCharge id_billing={id_billing}/>}
       <div className='container'>
         <span>{truncate(debtor.name)}</span>
         <span>{truncate(id_billing)}</span>
@@ -44,11 +60,11 @@ export const ChargesFields = ({ debtor, id_billing, amount, due_date, descriptio
         <span>{description}</span>
       </div>
       <div className='icons'>
-        <span>
+        <span onClick={() => setInsertChargeForm(true)}>
           <img src={editIcon} alt="Edit" />
           Editar
         </span>
-        <span className='delete_icon'>
+        <span className='delete_icon' onClick={() => setDeleteChargeForm(true)}>
           <img src={deleteIcon} alt="" />
           Excluir
         </span>

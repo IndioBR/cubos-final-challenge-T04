@@ -8,6 +8,9 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
     padding: 1.5rem 2rem;
     font-weight: 700;
     max-width: 40rem;

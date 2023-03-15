@@ -59,6 +59,7 @@ export const Container = styled.div`
               gap: 1.4rem;
               padding-left: 3rem;
               input[type="radio"] {
+                cursor: pointer;
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 appearance: none;

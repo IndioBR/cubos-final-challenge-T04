@@ -8,7 +8,7 @@ export const ChargesTitles = () => {
   return (
     <Styled.Container>
       <div>
-        {location.pathname == 'charges' && (<span>
+        {location.pathname == '/charges' && (<span>
           <img src={arrows} alt="arrows" />
           Cliente
         </span>)}

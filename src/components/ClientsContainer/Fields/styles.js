@@ -32,6 +32,7 @@ export const Container = styled.div`
       align-items: center;
       color: ${theme.colors.defaults.pink};
       font-size: 0.7rem;
+      cursor: pointer;
       > img {
         margin: 0 0.4rem;
         width: 2rem;

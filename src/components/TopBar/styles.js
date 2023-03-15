@@ -14,8 +14,19 @@ export const Container = styled.div`
 `;
 
 export const PageTitle = styled.span`
-  ${({ theme }) => css`
-    font-weight: 900;
-    font-size: 2.4rem;
+  ${({ theme, page }) => css`
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 2rem;
+    ${page === 'Início' && css`
+      font-weight: 900;
+      font-size: 2.4rem;
+    `}
+    font-size: 1.4rem;
+    font-weight: 400;
+    > span {
+      color: ${theme.colors.grays.gray3}
+    }
   `}
 `;

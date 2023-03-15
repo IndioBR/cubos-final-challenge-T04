@@ -5,8 +5,12 @@ import charges from '../../../assets/charge.svg';
 import close from '../../../assets/x.svg';
 import { Input } from '../Input';
 import { Button } from '../../Button';
+import { useContext } from 'react';
+import { MyContext } from '../../Contexts';
 
 export const InsertCharges = ({ charge }) => {
+  const {insertChargeForm, setInsertChargeForm} = useContext(MyContext);
+
   return (
     <Styled.Container>
       <div className='form_container'>
@@ -15,31 +19,35 @@ export const InsertCharges = ({ charge }) => {
             <img src={charges} alt="Clients" />
             <h1>{charge ? 'Editar' : 'Cadastro de'} Cobrança</h1>
           </div>
-          <img src={close} alt="" />
+          <img src={close} alt="" onClick={() => setInsertChargeForm(false)}/>
         </div>
         <form>
           <Input
             label='Nome'
             required
+            autoComplete={charge && charge?.debtor?.name}
             ph='Insira o Nome'
             type='text'
           />
           <Input
             label='Descrição'
             required
+            autoComplete={charge && charge?.description}
             ph='Insira a descrição'
-            type='textarea'
+            type='text'
           />
           <div className="asides">
             <Input
               label='Vencimento'
               required
+              autoComplete={charge && charge?.due_date}
               ph='dd/mm/aaaa'
               type='date'
             />
             <Input
               label='Valor'
               required
+              autoComplete={charge && charge?.amount}
               ph='Insira o Valor'
               type='number'
             />
@@ -48,7 +56,7 @@ export const InsertCharges = ({ charge }) => {
             <span>Status*</span>
             <div className='status'>
               <div>
-                <input type="radio" id='status_paid' name='charge_status' value='paid'/>
+                <input type="radio" id='status_paid' name='charge_status' value='paid' defaultChecked/>
                 <label htmlFor="status_paid">Cobrança Paga</label>
               </div>
               <div>
@@ -70,5 +78,6 @@ export const InsertCharges = ({ charge }) => {
 };
 
 InsertCharges.propTypes = {
-  charge: P.object.isRequired,
+  charge: P.object,
+  debtor: P.string,
 };

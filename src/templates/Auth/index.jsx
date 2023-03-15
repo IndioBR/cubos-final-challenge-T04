@@ -11,7 +11,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [editUserModal, setEditUserModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [feedbackActive, setFeedbackActive] = useState(true);
+  const [feedbackActive, setFeedbackActive] = useState(false);
+  const [feedbackType, setFeedbackType] = useState('success');
+  const [feedbackMessage, setFeedbackMessage] = useState('');
+  const [insertClientForm, setInsertClientForm] = useState(false);
+  const [insertChargeForm, setInsertChargeForm] = useState(false);
+  const [deleteChargeForm, setDeleteChargeForm] = useState(false);
 
 
   const token = localStorage.getItem('token');
@@ -25,6 +30,11 @@ export const AuthProvider = ({ children }) => {
     editUserModal, setEditUserModal,
     showModal, setShowModal,
     feedbackActive, setFeedbackActive,
+    feedbackType, setFeedbackType,
+    feedbackMessage, setFeedbackMessage,
+    insertClientForm, setInsertClientForm,
+    insertChargeForm, setInsertChargeForm,
+    deleteChargeForm, setDeleteChargeForm
   }
 
   useEffect(() => {

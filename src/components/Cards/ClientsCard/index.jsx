@@ -26,7 +26,7 @@ ClientsCard.propTypes = {
     P.shape({
       name: P.string.isRequired,
       id: P.number.isRequired,
-      update_at: P.string.isRequired
+      update_at: P.string
     })
   ),
 };

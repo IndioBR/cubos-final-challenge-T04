@@ -8,6 +8,7 @@ import { Private } from '../private_routes';
 import { Home } from '../../pages/Home/Home';
 import { ClientsPage } from '../../pages/Clients';
 import { ChargesPage } from '../../pages/Charges';
+import { ClientPage } from '../../pages/Client';
 
 export const MyRoutes = () => {
   return (
@@ -20,6 +21,7 @@ export const MyRoutes = () => {
         <Route element={<Private />}>
           <Route path="/home" element={<Home />} />
           <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/clients/client" element={<ClientPage />} />
           <Route path="/charges" element={<ChargesPage />} />
         </Route>
       </Routes>

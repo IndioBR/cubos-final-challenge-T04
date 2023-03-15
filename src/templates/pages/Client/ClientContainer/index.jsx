@@ -3,10 +3,22 @@ import * as Styled from './styles';
 import clients from '../../../../assets/clients.svg';
 import edit from '../../../../assets/edit_client.svg';
 import { ChargesContainer } from "../../../../components/ChargesContainer";
+import { InsertClient } from '../../../../components/Forms/InsertClient';
+import {InsertCharges} from '../../../../components/Forms/InsertCharges';
+import { useContext } from 'react';
+import { MyContext } from '../../../../components/Contexts';
 
-export const ClientPage = ({ client }) => {
+export const Client = ({ client }) => {
+  const {
+    insertChargeForm,
+    setInsertChargeForm,
+    insertClientForm,
+    setInsertClientForm,
+  } = useContext(MyContext);
   return (
     <Styled.Container>
+      {insertChargeForm && <InsertCharges />}
+      {insertClientForm && <InsertClient client={client} />}
       <div className='client_title'>
         <img src={clients}  alt='Client'/>
         <h1>{client.name}</h1>
@@ -14,7 +26,7 @@ export const ClientPage = ({ client }) => {
       <div className='client_container'>
         <div className='client_container_title'>
           <h3>Dados do Cliente</h3>
-          <div className='client_edit'>
+          <div className='client_edit' onClick={() => setInsertClientForm(true)}>
             <img src={edit} alt='Edit'/>
             <span>Editar Cliente</span>
           </div>
@@ -65,7 +77,7 @@ export const ClientPage = ({ client }) => {
       <div className="client_charges_container">
         <div className='client_container_title'>
           <h3>Cobranças do Cliente</h3>
-          <div className='new_charge'>
+          <div className='new_charge' onClick={() => setInsertChargeForm(true)}>
             <span>+ Nova cobrança</span>
           </div>
         </div>
@@ -75,6 +87,6 @@ export const ClientPage = ({ client }) => {
   );
 };
 
-ClientPage.propTypes = {
+Client.propTypes = {
   client: P.object.isRequired,
 };

@@ -8,7 +8,7 @@ import close from '../../../assets/x.svg';
 import { useState } from 'react';
 
 export const EditRegister = () => {
-  const { user, setEditUserModal } = useContext(MyContext);
+  const { user, setEditUserModal, setFeedbackActive, setFeedbackType, setFeedbackMessage } = useContext(MyContext);
   const [equal, setEqual] = useState(true);
 
   const token = localStorage.getItem('token');
@@ -27,21 +27,22 @@ export const EditRegister = () => {
       "cpf": e.target[2].value,
       "phone": e.target[3].value,
     };
-    console.log(JSON.stringify(data));
-    try {
-      fetch(`http://localhost:8000/api/users/${user.id}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(data),
-      }).then(p => p.json()).then(r => console.log(r)).catch(err => {
-        throw new Error(err);
-      }).finally(() => setEditUserModal(false));
-    } catch (error) {
-      console.error(error.msg);
-    }
+    fetch(`http://localhost:8000/api/users/${user.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    }).then(p => p.json()).then(r => {
+      setFeedbackMessage(r.msg);
+      setFeedbackType('success');
+      setFeedbackActive(true);
+    }).catch(err => {
+      setFeedbackMessage(err.msg);
+      setFeedbackType('fail');
+      setFeedbackActive(true);
+    }).finally(() => setEditUserModal(false));
   }
 
 

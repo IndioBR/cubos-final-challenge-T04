@@ -17,7 +17,7 @@ export const Nav = () => {
             alt={item.alt}
             link={item.link}
             src={
-              location.pathname === item.link
+              location.pathname.includes(item.link)
                 ?
                 item.secondarySVG
                 :
@@ -25,7 +25,7 @@ export const Nav = () => {
             }
             page={item.page}
             selected={
-              location.pathname === item.link
+              location.pathname.includes(item.link)
                 ?
                 true
                 :
