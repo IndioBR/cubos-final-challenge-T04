@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 export const ClientFields = ({ name, email, cpf, phone, status, id }) => {
   const [statusStyle, setStatusStyle] = useState({});
-  const {insertChargeForm, setInsertChargeForm} = useContext(MyContext);
+  const {insertChargeForm, setInsertChargeForm, editCharge, setEditCharge,} = useContext(MyContext);
 
   useEffect(() => {
     const style = colorSelector(status);
@@ -26,20 +26,36 @@ export const ClientFields = ({ name, email, cpf, phone, status, id }) => {
     return value;
   }
 
+  const charge = {
+    debtor: {
+      name,
+      email,
+      cpf,
+      phone,
+      status,
+      id
+    }
+  }
+
+  const handleNewCharge = () => {
+    setInsertChargeForm(true);
+    setEditCharge(charge);
+  }
+
   return (
     <Styled.Container statBg={statusStyle.backgroundColor} statColor={statusStyle.color}>
-      {insertChargeForm && <InsertCharges debtor={name} />}
-      <Link to={`/clients/client?debtor_id=${id}`}>{truncate(name)}</Link>
-      <span>{cpf}</span>
-      <span>{email}</span>
-      <span>
+      {insertChargeForm && <InsertCharges />}
+      <td><Link to={`/clients/client?debtor_id=${id}`}>{truncate(name)}</Link></td>
+      <td>{cpf}</td>
+      <td>{email}</td>
+      <td>
         {phone ? phone : 'Insira um número de Telefone'}
-      </span>
-      <span className='status_field'>{statusStyle.status}</span>
-      <span className='charge_img' onClick={() => setInsertChargeForm(true)}>
+      </td>
+      <td className='status_field'>{statusStyle.status}</td>
+      <td className='charge_img' onClick={handleNewCharge}>
         <img src={addCharge} alt="" />
         Cobrança
-      </span>
+      </td>
     </Styled.Container>
   );
 };

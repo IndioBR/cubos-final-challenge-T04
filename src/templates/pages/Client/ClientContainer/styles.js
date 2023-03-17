@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Container as ChargesContainer } from '../../../../components/ChargesContainer/styles'
 
 export const Container = styled.div`
   ${({ theme }) => css`

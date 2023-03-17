@@ -9,6 +9,7 @@ export const ClientPage = () => {
   const location = useLocation();
 
   const [debtor, setDebtor] = useState({});
+  const [debtorCharges, setDebtorCharges] = useState([]);
 
   useEffect(() => {
     const param = new URLSearchParams(location.search);
@@ -20,13 +21,20 @@ export const ClientPage = () => {
       'Authorization': `Bearer ${token}`,
     }
     }).then(r => r.json()).then((data) => setDebtor(data)).catch(err => console.error(err))
+    fetch(`http://localhost:8000/api/installments?filter=debtor_id:=:${param.get('debtor_id')}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+    }).then(r => r.json()).then((data) => setDebtorCharges(data)).catch(err => console.error(err))
 
   }, [location]);
 
   return (
     <Styled.Container>
       <Base page='Clientes > Detalhes do Cliente'>
-        <Client client={debtor} />
+        <Client client={debtor} charges={debtorCharges}/>
       </Base>
     </Styled.Container>
   );

@@ -5,27 +5,25 @@ import arrows from '../../../assets/arrows.svg';
 export const ClientTitles = () => {
   return (
     <Styled.Container>
-      <div>
-        <span>
+        <th>
           <img src={arrows} alt="arrows" />
           Cliente
-        </span>
-        <span>
+        </th>
+        <th>
           CPF
-        </span>
-        <span>
+        </th>
+        <th>
           E-mail
-        </span>
-        <span>
+        </th>
+        <th>
           Telefone
-        </span>
-        <span>
+        </th>
+        <th>
           Status
-        </span>
-        <span>
+        </th>
+        <th>
           Criar Cobrança
-        </span>
-      </div>
+        </th>
     </Styled.Container>
   );
 };

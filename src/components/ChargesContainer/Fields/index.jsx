@@ -9,12 +9,20 @@ import {InsertCharges} from '../../Forms/InsertCharges';
 import { useContext } from 'react';
 import { MyContext } from '../../Contexts';
 import { DeleteCharge } from '../../Forms/DeleteCharge';
+import { Link } from 'react-router-dom';
 
 
 
-export const ChargesFields = ({ debtor, id_billing, amount, due_date, description, status }) => {
+export const ChargesFields = ({ debtor, id_billing, amount, due_date, description, status, id }) => {
   const [style, setStyle] = useState({});
-  const {insertChargeForm, setInsertChargeForm, deleteChargeForm, setDeleteChargeForm} = useContext(MyContext);
+  const {editCharge, setEditCharge,} = useContext(MyContext);
+
+  const {
+    insertChargeForm,
+    setInsertChargeForm,
+    deleteChargeForm,
+    setDeleteChargeForm
+  } = useContext(MyContext);
 
   useEffect(() => {
     if (status) {
@@ -37,15 +45,21 @@ export const ChargesFields = ({ debtor, id_billing, amount, due_date, descriptio
     amount,
     due_date,
     description,
-    status
+    status,
+    id
+  }
+
+  const handleEditClick = () => {
+    setInsertChargeForm(true);
+    setEditCharge(charge);
   }
 
   return (
     <Styled.Container status_bg={style.background} status_color={style.color}>
-      {insertChargeForm && <InsertCharges charge={charge}/>}
-      {deleteChargeForm && <DeleteCharge id_billing={id_billing}/>}
+      {insertChargeForm && <InsertCharges edit/>}
+      {deleteChargeForm && <DeleteCharge id={id}/>}
       <div className='container'>
-        <span>{truncate(debtor.name)}</span>
+        <span><Link to={`/clients/client?debtor_id=${debtor.id}`}>{truncate(debtor.name)}</Link></span>
         <span>{truncate(id_billing)}</span>
         <span>
           {amount.toLocaleString(
@@ -60,8 +74,8 @@ export const ChargesFields = ({ debtor, id_billing, amount, due_date, descriptio
         <span>{description}</span>
       </div>
       <div className='icons'>
-        <span onClick={() => setInsertChargeForm(true)}>
-          <img src={editIcon} alt="Edit" />
+        <span onClick={handleEditClick}>
+          <img src={editIcon} alt="Edit"/>
           Editar
         </span>
         <span className='delete_icon' onClick={() => setDeleteChargeForm(true)}>
@@ -80,4 +94,5 @@ ChargesFields.propTypes = {
   due_date: P.string.isRequired,
   description: P.string,
   status: P.string.isRequired,
+  id: P.number.isRequired,
 };

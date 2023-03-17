@@ -8,7 +8,9 @@ import { MyContext } from '../../Contexts/index'
 
 export const LoginForm = () => {
 
-  const { setUser } = useContext(MyContext);
+  const { setUser, setFeedbackMessage,
+    setFeedbackType,
+    setFeedbackActive } = useContext(MyContext);
 
   const navigate = useNavigate();
   const goTo = (path) => {
@@ -47,7 +49,9 @@ export const LoginForm = () => {
       goTo('/home');
 
     } catch (error) {
-      console.error(error);
+      setFeedbackMessage(error.message),
+      setFeedbackType('fail'),
+      setFeedbackActive(true)
     }
   }
 

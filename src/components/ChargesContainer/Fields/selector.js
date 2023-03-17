@@ -6,7 +6,7 @@ export const selector = (status) => {
       name: 'Pago'
     }
   }
-  if (status == 'Partially paid' || status == 'Open') {
+  if (status == 'Partially paid' || status == 'Pending') {
     return {
       background: '#f5d9b0',
       color: '#ef8f00',

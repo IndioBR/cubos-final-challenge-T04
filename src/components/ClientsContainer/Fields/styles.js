@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.tr`
   ${({ theme, statBg, statColor }) => css`
     width: 100%;
     text-align: start;
@@ -14,8 +15,9 @@ export const Container = styled.div`
     color: ${theme.colors.grays.gray2};
     border-bottom: 1px solid ${theme.colors.grays.gray4};
 
-    > span {
+    > td {
       width: 8%;
+      text-align: center;
     }
 
     > .status_field {
@@ -38,5 +40,11 @@ export const Container = styled.div`
         width: 2rem;
       }
     }
+  `}
+`;
+
+export const ClientLink = styled(Link)`
+  ${({ theme }) => css`
+    min-width: 100%;
   `}
 `;

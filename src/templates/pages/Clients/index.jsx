@@ -11,7 +11,13 @@ import { MyContext } from '../../../components/Contexts';
 export const ClientsPage = () => {
   const [clients, setClients] = useState([]);
 
-  const { user } = useContext(MyContext);
+  const {
+    user,
+    setFeedbackMessage,
+    setFeedbackType,
+    setFeedbackActive,
+    loading
+  } = useContext(MyContext);
 
 
   useEffect(() => {

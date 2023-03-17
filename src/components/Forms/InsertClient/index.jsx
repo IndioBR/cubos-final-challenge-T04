@@ -8,19 +8,104 @@ import { Button } from '../../Button';
 import { useContext } from 'react';
 import {MyContext} from '../../Contexts/index';
 
-export const InsertClient = ({ client }) => {
-  const {setInsertClientForm} = useContext(MyContext);
+export const InsertClient = ({ client, edit }) => {
+  const {
+    setInsertClientForm,
+    user,
+    setFeedbackMessage,
+    setFeedbackType,
+    setFeedbackActive
+  } = useContext(MyContext);
+
+  const token = localStorage.getItem('token');
+
+  const handleSubmit = (e) => {
+    const data = {
+      user_id: user.id,
+      name: e.target[0].value,
+      email: e.target[1].value,
+      cpf: e.target[2].value,
+      phone: e.target[3].value,
+      address: e.target[4].value,
+      complement: e.target[5].value,
+      cep: e.target[6].value,
+      neighborhood: e.target[7].value,
+      city: e.target[8].value,
+      state: e.target[9].value,
+    }
+
+    fetch(`http://localhost:8000/api/debtors`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data),
+    }).then(p => p.json()).then(r => {
+      setFeedbackMessage(r.msg);
+      setFeedbackType('success');
+      setFeedbackActive(true);
+    }).catch(err => {
+      setFeedbackMessage(err.msg);
+      setFeedbackType('fail');
+      setFeedbackActive(true);
+    }).finally(() => setInsertClientForm(false));
+  }
+
+  const handleEditClient = (e) => {
+    const data = {
+      _method: 'PATCH',
+      user_id: user.id,
+      name: e.target[0].value,
+      email: e.target[1].value,
+      cpf: e.target[2].value,
+      phone: e.target[3].value,
+      address: e.target[4].value,
+      complement: e.target[5].value,
+      cep: e.target[6].value,
+      neighborhood: e.target[7].value,
+      city: e.target[8].value,
+      state: e.target[9].value,
+    }
+
+    fetch(`http://localhost:8000/api/debtors/${client.id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data),
+    }).then(p => p.json()).then(r => {
+      setFeedbackMessage(r.msg);
+      setFeedbackType('success');
+      setFeedbackActive(true);
+    }).catch(err => {
+      setFeedbackMessage(err.msg);
+      setFeedbackType('fail');
+      setFeedbackActive(true);
+    }).finally(() => setInsertClientForm(false));
+  }
+
+  const modeSelect = (event) => {
+    event.preventDefault();
+
+    if (edit) {
+      handleEditClient(event);
+    } else {
+      handleSubmit(event);
+    }
+  }
   return (
     <Styled.Container>
       <div className='form_container'>
         <div className='form_top'>
           <div className='form_title'>
             <img src={clients} alt="Clients" />
-            <h1>{client ? 'Editar' : 'Cadastro do'} Cliente</h1>
+            <h1>{edit ? 'Editar' : 'Cadastro do'} Cliente</h1>
           </div>
           <img src={close} alt="" onClick={() => setInsertClientForm(false)}/>
         </div>
-        <form>
+        <form onSubmit={modeSelect}>
           <Input
             label='Nome'
             required
@@ -72,7 +157,7 @@ export const InsertClient = ({ client }) => {
             label='CEP'
             autoComplete={client?.cep && client.cep}
             ph='Insira o CEP'
-            type='text'
+            type='number'
             />
             <Input
               label='Bairro'
@@ -90,6 +175,7 @@ export const InsertClient = ({ client }) => {
               label='UF'
               autoComplete={client?.state && client.state}
               ph='Insira o UF'
+              max={3}
               type='text'
             />
           </div>
@@ -107,4 +193,5 @@ export const InsertClient = ({ client }) => {
 
 InsertClient.propTypes = {
   client: P.object,
+  edit: P.bool,
 }

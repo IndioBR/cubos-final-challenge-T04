@@ -17,6 +17,8 @@ export const AuthProvider = ({ children }) => {
   const [insertClientForm, setInsertClientForm] = useState(false);
   const [insertChargeForm, setInsertChargeForm] = useState(false);
   const [deleteChargeForm, setDeleteChargeForm] = useState(false);
+  const [editCharge, setEditCharge] = useState({});
+  const [editClient, setEditClient] = useState({});
 
 
   const token = localStorage.getItem('token');
@@ -34,7 +36,9 @@ export const AuthProvider = ({ children }) => {
     feedbackMessage, setFeedbackMessage,
     insertClientForm, setInsertClientForm,
     insertChargeForm, setInsertChargeForm,
-    deleteChargeForm, setDeleteChargeForm
+    deleteChargeForm, setDeleteChargeForm,
+    editCharge, setEditCharge,
+    editClient, setEditClient,
   }
 
   useEffect(() => {

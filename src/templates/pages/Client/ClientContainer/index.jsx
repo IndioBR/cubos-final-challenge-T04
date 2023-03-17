@@ -8,17 +8,29 @@ import {InsertCharges} from '../../../../components/Forms/InsertCharges';
 import { useContext } from 'react';
 import { MyContext } from '../../../../components/Contexts';
 
-export const Client = ({ client }) => {
+export const Client = ({ client, charges }) => {
   const {
     insertChargeForm,
     setInsertChargeForm,
     insertClientForm,
     setInsertClientForm,
+    setEditCharge
   } = useContext(MyContext);
+  const charge = {
+    debtor: {
+      id: client.id,
+      name: client.name
+    }
+  }
+
+  const handleClick = () => {
+    setEditCharge(charge)
+    setInsertChargeForm(true);
+  }
   return (
     <Styled.Container>
+      {insertClientForm && <InsertClient client={client} edit/>}
       {insertChargeForm && <InsertCharges />}
-      {insertClientForm && <InsertClient client={client} />}
       <div className='client_title'>
         <img src={clients}  alt='Client'/>
         <h1>{client.name}</h1>
@@ -77,11 +89,11 @@ export const Client = ({ client }) => {
       <div className="client_charges_container">
         <div className='client_container_title'>
           <h3>Cobranças do Cliente</h3>
-          <div className='new_charge' onClick={() => setInsertChargeForm(true)}>
+          <div className='new_charge' onClick={handleClick}>
             <span>+ Nova cobrança</span>
           </div>
         </div>
-        <ChargesContainer />
+        <ChargesContainer charges={charges} />
       </div>
     </Styled.Container>
   );
@@ -89,4 +101,5 @@ export const Client = ({ client }) => {
 
 Client.propTypes = {
   client: P.object.isRequired,
+  charges: P.array.isRequired,
 };

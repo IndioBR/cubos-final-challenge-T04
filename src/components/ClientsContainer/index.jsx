@@ -9,11 +9,9 @@ export const ClientsContainer = ({ clients }) => {
   return (
     <Styled.Container>
       <ClientTitles />
-      <div className='clients_container'>
         {clients && clients.map(client =>
           <ClientFields {...client} key={client.id} />
         )}
-      </div>
     </Styled.Container>
   );
 };

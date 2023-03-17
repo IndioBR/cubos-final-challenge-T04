@@ -11,4 +11,10 @@ export const colorSelector = (type) => {
       color: '#0e8750',
       status: 'Em Dia'
     }
+  if (type === 'New')
+    return {
+      backgroundColor: '#c3d4fe',
+      color: '#4f78e3',
+      status: 'Novo'
+    }
 }
